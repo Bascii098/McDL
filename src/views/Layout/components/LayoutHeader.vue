@@ -1,30 +1,32 @@
 <script setup></script>
 <template>
-  <header class="app-header">
-    <div class="container">
-      <h1 class="logo">
-        <RouterLink to="/">McDL</RouterLink>
-      </h1>
-      <h1 class="menu">
-        <RouterLink to="/menu"> menu </RouterLink>
-        <div @click="$router.push('/menu')" class="character">菜单</div>
-      </h1>
-      <h1 class="cart">
-        <RouterLink to="/cart">cart</RouterLink>
-        <div @click="$router.push('/cart')" class="character">购物车</div>
-      </h1>
-      <h1 class="profile">
-        <RouterLink to="/profile">
-          <div>
-            <el-avatar
-              :size="100"
-              src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-            />
-          </div>
-        </RouterLink>
-      </h1>
-    </div>
-  </header>
+  <el-affix :offset="0">
+    <header class="app-header">
+      <div class="container">
+        <h1 class="logo">
+          <RouterLink to="/">McDL</RouterLink>
+        </h1>
+        <h1 class="menu">
+          <RouterLink to="/menu"> menu </RouterLink>
+          <div @click="$router.push('/menu')" class="character">菜单</div>
+        </h1>
+        <h1 class="cart">
+          <RouterLink to="/cart">cart</RouterLink>
+          <div @click="$router.push('/cart')" class="character">购物车</div>
+        </h1>
+        <h1 class="profile">
+          <RouterLink to="/profile">
+            <div>
+              <el-avatar
+                :size="100"
+                src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+              />
+            </div>
+          </RouterLink>
+        </h1>
+      </div>
+    </header>
+  </el-affix>
 </template>
 
 <style scoped lang="scss">
