@@ -1,9 +1,7 @@
 <script setup></script>
 <template>
   <el-backtop :bottom="100">
-    <div class="top">
-      ↑
-    </div>
+    <div class="top">↑</div>
   </el-backtop>
 </template>
 <style lang="scss">
