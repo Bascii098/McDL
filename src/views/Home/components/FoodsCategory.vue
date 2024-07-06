@@ -15,7 +15,7 @@
     <li></li>
   </ul>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .category {
   width: 1240px;
   display: flex;
@@ -54,7 +54,7 @@
 
     .message {
       width: 400px;
-      height: 100%;
+      height: 120px;
       text-align: center;
       font-size: 60px;
       font-family: 'Courier New', Courier, monospace;

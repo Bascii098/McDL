@@ -4,7 +4,7 @@
     <div class="top">↑</div>
   </el-backtop>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .top {
   height: 100%;
   width: 100%;

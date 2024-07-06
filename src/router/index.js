@@ -4,7 +4,6 @@ import cart from '@/views/cart/index.vue'
 import Login from '@/views/Login/index.vue'
 import menu from '@/views/menu/index.vue'
 import order from '@/views/order/index.vue'
-import category from '@/views/category/index.vue'
 import Home from '@/views/Home/index.vue'
 import profile from '@/views/profile/index.vue'
 
@@ -20,14 +19,8 @@ const router = createRouter({
           component: Home
         },
         {
-          path: '/menu',
-          component: menu,
-          children: [
-            {
-              path: '',
-              component: category
-            }
-          ]
+          path: '/menu/:id',
+          component: menu
         },
         {
           path: '/cart',

@@ -7,8 +7,8 @@
           <RouterLink to="/">McDL</RouterLink>
         </h1>
         <h1 class="menu">
-          <RouterLink to="/menu"> menu </RouterLink>
-          <div @click="$router.push('/menu')" class="character">菜单</div>
+          <RouterLink to="/menu/1"> menu </RouterLink>
+          <div @click="$router.push('/menu/1')" class="character">菜单</div>
         </h1>
         <h1 class="cart">
           <RouterLink to="/cart">cart</RouterLink>
