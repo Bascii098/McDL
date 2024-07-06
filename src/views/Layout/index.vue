@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { RouterView } from 'vue-router'
 import LayoutFooter from './components/LayoutFooter.vue'
 import LayoutBackToTop from './components/LayoutBackToTop.vue'
@@ -9,10 +9,6 @@ import LayoutHeader from './components/LayoutHeader.vue'
   <LayoutHeader />
 
   <RouterView />
-
-  <div>
-    <div style="height: 800px; color: blue"></div>
-  </div>
 
   <LayoutBackToTop />
   <LayoutFooter />
