@@ -1,5 +1,7 @@
-<script setup></script>
+<script setup>
+import Banner from './components/HomeBanner.vue'
+</script>
 
 <template>
-  <div>我是首页</div>
+  <Banner />
 </template>
