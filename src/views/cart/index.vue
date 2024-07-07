@@ -9,9 +9,6 @@ const cartList = []
         <table>
           <thead>
             <tr>
-              <th width="120">
-                <el-checkbox />
-              </th>
               <th width="400">商品信息</th>
               <th width="220">单价</th>
               <th width="180">数量</th>
@@ -22,9 +19,6 @@ const cartList = []
           <!-- 商品列表 -->
           <tbody>
             <tr v-for="i in cartList" :key="i.id">
-              <td>
-                <el-checkbox />
-              </td>
               <td>
                 <div class="goods">
                   <RouterLink to="/"><img :src="i.picture" alt="" /></RouterLink>
@@ -63,7 +57,7 @@ const cartList = []
               <td colspan="6">
                 <div class="cart-none">
                   <el-empty description="购物车列表为空">
-                    <el-button type="primary">随便逛逛</el-button>
+                    <el-button type="primary" @click="$router.push('/menu/1')">随便逛逛</el-button>
                   </el-empty>
                 </div>
               </td>
@@ -147,7 +141,7 @@ const cartList = []
   }
 
   .green {
-    color: red;
+    color: green;
   }
 
   .f16 {

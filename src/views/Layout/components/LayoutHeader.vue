@@ -14,15 +14,9 @@
           <RouterLink to="/cart">cart</RouterLink>
           <div @click="$router.push('/cart')" class="character">购物车</div>
         </h1>
-        <h1 class="profile">
-          <RouterLink to="/profile">
-            <div>
-              <el-avatar
-                :size="100"
-                src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-              />
-            </div>
-          </RouterLink>
+        <h1 class="order">
+          <RouterLink to="/order">order</RouterLink>
+          <div @click="$router.push('/order')" class="character">订单</div>
         </h1>
       </div>
     </header>
@@ -94,6 +88,33 @@
       width: 100%;
       text-indent: -9999px;
       background: url('@/assets/images/cart.png') no-repeat center / contain;
+    }
+
+    .character {
+      width: 300px;
+      height: 40px;
+      font-size: 20px;
+      line-height: 40px;
+      font-weight: lighter;
+      text-align: center;
+    }
+  }
+
+  .order {
+    width: 300px;
+
+    &:hover {
+      color: red;
+      border-left: 1px solid #d9d9d9;
+      border-right: 1px solid #d9d9d9;
+    }
+
+    a {
+      display: flex;
+      height: 60px;
+      width: 100%;
+      text-indent: -9999px;
+      background: url('@/assets/images/order.png') no-repeat center / contain;
     }
 
     .character {
