@@ -6,6 +6,7 @@ import menu from '@/views/menu/index.vue'
 import order from '@/views/order/index.vue'
 import Home from '@/views/Home/index.vue'
 import profile from '@/views/profile/index.vue'
+import foodsdetail from '@/views/FoodsDetail/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,10 @@ const router = createRouter({
         {
           path: '/menu/:id',
           component: menu
+        },
+        {
+          path: '/foods/:id',
+          component: foodsdetail
         },
         {
           path: '/cart',

@@ -6,7 +6,7 @@ import MenuNav from './components/MenuNav.vue'
     <MenuNav class="nav" />
     <ul class="category">
       <li>
-        <RouterLink to="/">
+        <RouterLink to="/foods/1">
           <img class="img" src="@/assets/images/burger.png" />
           <div class="message">汉堡</div>
           <div class="price">19.9</div>
