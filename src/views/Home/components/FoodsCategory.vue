@@ -1,18 +1,47 @@
-<script setup></script>
+<script setup>
+const list = [
+  {
+    imgUrl:
+      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/attachment/2022/08/202208081011205699.png',
+    urlString: '1',
+    name: '汉堡'
+  },
+  {
+    imgUrl:
+      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/attachment/2022/08/202208091547349086.png',
+    urlString: '2',
+    name: '小食'
+  },
+  {
+    imgUrl:
+      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/attachment/2020/05/202005270949182813.png',
+    urlString: '3',
+    name: '甜品'
+  },
+  {
+    imgUrl:
+      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/attachment/2022/08/202208091541242793.png',
+    urlString: '4',
+    name: '饮品'
+  },
+  {
+    imgUrl:
+      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/attachment/2022/08/202208091555536682.png',
+    urlString: '5',
+    name: '套餐'
+  }
+]
+</script>
 
 <template>
   <ul class="category">
-    <li>
-      <RouterLink to="/menu/1">
+    <li v-for="item in list" :key="item.urlString">
+      <RouterLink :to="`/menu/${item.urlString}`">
         <div class="hold"></div>
-        <img class="img" src="@/assets/images/burger.png" />
-        <div class="message">汉堡</div>
+        <img class="img" :src="item.imgUrl" />
+        <div class="message">{{ item.name }}</div>
       </RouterLink>
     </li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
   </ul>
 </template>
 <style lang="scss" scoped>
@@ -46,6 +75,7 @@
 
     .hold {
       height: 180px;
+      background-color: #ebebeb;
     }
 
     .img {
