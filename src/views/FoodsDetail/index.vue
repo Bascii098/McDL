@@ -19,8 +19,17 @@
     </div>
   </div>
   <hr />
-  <div>
-    <el-button size="large" class="btn"> 加入购物车 </el-button>
+  <div class="chosen">
+    <span>请选择规格</span>
+    <el-button class="btn"> 不要酸黄瓜 </el-button>
+    <el-button class="btn"> 不要面包 </el-button>
+    <el-button class="btn"> 不要肉饼 </el-button>
+    <el-button class="btn"> 不要吉士 </el-button>
+    <el-button class="btn"> 不要生菜 </el-button>
+    <el-button class="btn"> 不要洋葱粒 </el-button>
+  </div>
+  <div class="cart">
+    <el-button size="large"> 加入购物车 </el-button>
   </div>
 </template>
 <style scoped lang="scss">
@@ -74,7 +83,15 @@
   }
 }
 
-.btn {
-  margin: 20px 20px;
+.chosen {
+  margin-left: 450px;
+
+  .btn {
+    margin: 20px 20px;
+  }
+}
+
+.cart {
+  margin-left: 1450px;
 }
 </style>
