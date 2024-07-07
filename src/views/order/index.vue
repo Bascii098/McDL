@@ -26,10 +26,28 @@ const tableData = [
   <div class="order">
     <span class="msg">订单列表</span>
     <el-table :data="tableData" border style="width: 100%" height="800">
-      <el-table-column prop="foods" label="套餐" show-overflow-tooltip />
-      <el-table-column prop="name" label="状态" width="180" />
+      <el-table-column label="套餐" show-overflow-tooltip>
+        <template #default="scope">
+          <div class="table">
+            <span style="margin-left: 10px">{{ scope.row.foods }}</span>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="状态" width="180">
+        <template #default="scope">
+          <div class="table">
+            <span class="status">{{ scope.row.name }}</span>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column prop="address" label="就餐方式" width="180" />
-      <el-table-column prop="address" label="价格" width="180" />
+      <el-table-column label="价格" width="180">
+        <template #default="scope">
+          <div class="table">
+            <span class="price">{{ scope.row.address }}</span>
+          </div>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -44,6 +62,22 @@ const tableData = [
     display: flex;
     justify-content: center;
     font-size: large;
+  }
+
+  .table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .price {
+      color: red;
+      font-family: fantasy;
+    }
+
+    .status {
+      font-family: serif;
+      font-size: 18px;
+    }
   }
 }
 </style>
