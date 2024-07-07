@@ -3,7 +3,7 @@
 <template>
   <ul class="category">
     <li>
-      <RouterLink to="/">
+      <RouterLink to="/menu/1">
         <div class="hold"></div>
         <img class="img" src="@/assets/images/burger.png" />
         <div class="message">汉堡</div>
