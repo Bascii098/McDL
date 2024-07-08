@@ -1,44 +1,21 @@
 <script setup>
-const list = [
-  {
-    imgUrl:
-      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/attachment/2022/08/202208081011205699.png',
-    urlString: '1',
-    name: '汉堡'
-  },
-  {
-    imgUrl:
-      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/attachment/2022/08/202208091547349086.png',
-    urlString: '2',
-    name: '小食'
-  },
-  {
-    imgUrl:
-      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/attachment/2020/05/202005270949182813.png',
-    urlString: '3',
-    name: '甜品'
-  },
-  {
-    imgUrl:
-      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/attachment/2022/08/202208091541242793.png',
-    urlString: '4',
-    name: '饮品'
-  },
-  {
-    imgUrl:
-      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/attachment/2022/08/202208091555536682.png',
-    urlString: '5',
-    name: '套餐'
-  }
-]
+import { getCategoryAPI } from '@/apis/foodsCategory'
+import { onMounted, ref } from 'vue'
+
+const foodsList = ref([])
+const getFood = async () => {
+  const res = await getCategoryAPI()
+  foodsList.value = res.data
+}
+onMounted(() => getFood())
 </script>
 
 <template>
   <ul class="category">
-    <li v-for="item in list" :key="item.urlString">
-      <RouterLink :to="`/menu/${item.urlString}`">
+    <li v-for="item in foodsList" :key="item.ID">
+      <RouterLink :to="`/menu/${item.ID}`">
         <div class="hold"></div>
-        <img class="img" :src="item.imgUrl" />
+        <img class="img" :src="item.imgurl" />
         <div class="message">{{ item.name }}</div>
       </RouterLink>
     </li>

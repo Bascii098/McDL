@@ -1,17 +1,19 @@
 <script setup>
-const categoryList = [
-  { name: '汉堡', id: 1 },
-  { name: '饮料', id: 2 },
-  { name: '小吃', id: 3 },
-  { name: '套餐', id: 4 }
-]
+import { getCategoryAPI } from '@/apis/foodsCategory'
+import { onMounted, ref } from 'vue'
+const foodsList = ref([])
+const getBanner = async () => {
+  const res = await getCategoryAPI()
+  foodsList.value = res.data
+}
+onMounted(() => getBanner())
 </script>
 <template>
   <div>
     <ul>
-      <li class="home" v-for="item in categoryList" :key="item.id">
-        <RouterLink class="router" active-class="active" :to="`/menu/${item.id}`">
-          <img class="img" src="@/assets/images/burgericon.png" />
+      <li class="home" v-for="item in foodsList" :key="item.ID">
+        <RouterLink class="router" active-class="active" :to="`/menu/${item.ID}`">
+          <img class="img" :src="item.imgurl" />
           <div class="msg">{{ item.name }}</div>
         </RouterLink>
       </li>
@@ -22,6 +24,12 @@ const categoryList = [
 .home {
   width: 400px;
   height: 200px;
+
+  .active {
+    .msg {
+      color: $MCDLColor;
+    }
+  }
 
   .router {
     display: flex;
