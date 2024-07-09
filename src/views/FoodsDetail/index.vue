@@ -1,12 +1,31 @@
 <script setup>
 import { getfoodsdetailAPI } from '@/apis/foods'
-import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { addcartAPI } from '@/apis/cart'
+import { onMounted, ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
+const userStore = useUserStore()
+const isLogin = computed(() => userStore.token)
+
+const router = useRouter()
 const route = useRoute()
 const foodsDetailList = ref([])
 const getDetail = async () => {
   const res = await getfoodsdetailAPI(route.params.id)
   foodsDetailList.value = res.data
+}
+const addcart = async () => {
+  if (isLogin.value) {
+    const res = await addcartAPI({
+      name: foodsDetailList.value.name,
+      num: 1,
+      price: foodsDetailList.value.price,
+      imgurl: foodsDetailList.value.imgurl
+    })
+    console.log(res)
+  } else {
+    router.push('/login')
+  }
 }
 onMounted(() => getDetail())
 </script>
@@ -32,7 +51,7 @@ onMounted(() => getDetail())
   </div>
 
   <div class="cart">
-    <el-button size="large"> 加入购物车 </el-button>
+    <el-button size="large" @click="addcart"> 加入购物车 </el-button>
   </div>
 </template>
 <style scoped lang="scss">

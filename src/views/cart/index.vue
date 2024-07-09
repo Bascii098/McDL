@@ -1,5 +1,13 @@
 <script setup>
-const cartList = []
+import { getcartAPI } from '@/apis/cart'
+import { onMounted, ref } from 'vue'
+
+const cartList = ref([])
+const getcart = async () => {
+  const res = await getcartAPI()
+  cartList.value = res.data
+}
+onMounted(() => getcart())
 </script>
 
 <template>
@@ -21,7 +29,7 @@ const cartList = []
             <tr v-for="i in cartList" :key="i.id">
               <td>
                 <div class="goods">
-                  <RouterLink to="/"><img :src="i.picture" alt="" /></RouterLink>
+                  <RouterLink to="/"><img :src="i.imgurl" alt="" /></RouterLink>
                   <div>
                     <p class="name ellipsis">
                       {{ i.name }}
@@ -33,10 +41,10 @@ const cartList = []
                 <p>&yen;{{ i.price }}</p>
               </td>
               <td class="tc">
-                <el-input-number v-model="i.count" />
+                <el-input-number v-model="i.num" />
               </td>
               <td class="tc">
-                <p class="f16 red">&yen;{{ (i.price * i.count).toFixed(2) }}</p>
+                <p class="f16 red">&yen;{{ (i.price * i.num).toFixed(2) }}</p>
               </td>
               <td class="tc">
                 <p>
@@ -68,7 +76,7 @@ const cartList = []
       <!-- 操作栏 -->
       <div class="action">
         <div class="batch">
-          共 10 件商品，已选择 2 件，商品合计：
+          共 10 件商品,商品合计：
           <span class="red">¥ 200.00 </span>
         </div>
         <div class="total">
