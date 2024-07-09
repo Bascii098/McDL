@@ -3,6 +3,7 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { ref, watch } from 'vue'
 import { newuserAPI, userLoginService } from '@/apis/user'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 const router = useRouter()
 const form = ref()
 const isRegister = ref(true)
@@ -83,6 +84,7 @@ watch(isRegister, () => {
     repassword: ''
   }
 })
+const userStore = useUserStore()
 const login = async () => {
   // 验证表单
   await form.value.validate()
@@ -97,12 +99,13 @@ const login = async () => {
     username: formModel.value.username,
     password: formModel.value.password
   })
-  // console.log('API Response:', response)
+  console.log('API Response:', response)
 
   if (response.status === 0) {
     // 显示成功消息
+    userStore.setToken(response.token)
     ElMessage.success(response.message)
-    router.replace('/')
+    router.push('/')
   } else {
     ElMessage.error(response.message)
   }
