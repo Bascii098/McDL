@@ -1,32 +1,21 @@
 <script setup>
 import MenuNav from './components/MenuNav.vue'
-import { getHamburgersAPI } from '@/apis/hamburgers'
-import { getCategoryAPI } from '@/apis/foodsCategory'
+import { getfoodsAPI } from '@/apis/foods'
 import { onMounted, ref } from 'vue'
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 const route = useRoute()
-const router = useRouter()
+// const router = useRouter()
 const foodsList = ref([])
-const getFoodList = (id) => {
-  if (id === '1') {
-    return getHamburgersAPI()
-  } else if (id === '2') {
-    return getCategoryAPI()
-  } else if (id === '3') {
-    return getCategoryAPI()
-  } else if (id === '4') {
-    return getCategoryAPI()
-  } else if (id === '5') {
-    return getCategoryAPI()
-  } else if (id === '6') {
-    return getCategoryAPI()
-  } else {
-    alert('页面不存在')
-    router.replace('/')
-  }
+const FOODMAP = {
+  1: 'hamburgers',
+  2: 'beverage',
+  3: 'snacks',
+  4: 'desserts',
+  5: 'breakfast'
 }
+
 const getFood = async (id = route.params.id) => {
-  const res = await getFoodList(id)
+  const res = await getfoodsAPI(FOODMAP[id])
   foodsList.value = res.data
 }
 onMounted(() => getFood())

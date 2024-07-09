@@ -1,33 +1,36 @@
+<script setup>
+import { getfoodsdetailAPI } from '@/apis/foods'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+const foodsDetailList = ref([])
+const getDetail = async () => {
+  const res = await getfoodsdetailAPI(route.params.id)
+  foodsDetailList.value = res.data
+}
+onMounted(() => getDetail())
+</script>
 <template>
   <div>
     <el-breadcrumb class="breadcrumb" separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/menu/1' }">菜单</el-breadcrumb-item>
-      <el-breadcrumb-item>巨无霸</el-breadcrumb-item>
+      <el-breadcrumb-item>{{ foodsDetailList.name }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
   <div class="detail">
-    <img class="img" src="@/assets/images/burger.png" alt="" />
+    <img class="img" :src="foodsDetailList.imgurl" alt="" />
     <div class="spec">
-      <div class="g-name">巨无霸</div>
+      <div class="g-name">{{ foodsDetailList.name }}</div>
       <div class="g-desc">
-        传承50年的经典之选！两块100%纯牛肉饼，搭配撒有鲜芝麻的松软面包、清新爽口的生菜、洋葱和酸黄瓜，辅以香滑顺口的芝士与美味酱汁，层层食材，口感丰富，打造极致美味体验。
+        {{ foodsDetailList.desc }}
       </div>
       <div class="g-price">
-        <span> ￥19.9</span>
+        <span> ￥{{ foodsDetailList.price }}</span>
       </div>
     </div>
   </div>
-  <hr />
-  <div class="chosen">
-    <span>请选择规格</span>
-    <el-button class="btn"> 不要酸黄瓜 </el-button>
-    <el-button class="btn"> 不要面包 </el-button>
-    <el-button class="btn"> 不要肉饼 </el-button>
-    <el-button class="btn"> 不要吉士 </el-button>
-    <el-button class="btn"> 不要生菜 </el-button>
-    <el-button class="btn"> 不要洋葱粒 </el-button>
-  </div>
+
   <div class="cart">
     <el-button size="large"> 加入购物车 </el-button>
   </div>
@@ -64,6 +67,7 @@
     flex-wrap: wrap;
 
     .g-name {
+      width: 800px;
       font-size: 28px;
       line-height: 38px;
       color: red;
@@ -71,6 +75,7 @@
 
     .g-desc {
       font-size: 15px;
+      width: 600px;
     }
 
     .g-price {
@@ -80,14 +85,6 @@
       font-family: fantasy;
       margin-left: 75%;
     }
-  }
-}
-
-.chosen {
-  margin-left: 450px;
-
-  .btn {
-    margin: 20px 20px;
   }
 }
 

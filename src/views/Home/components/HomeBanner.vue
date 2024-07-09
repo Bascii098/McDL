@@ -8,17 +8,17 @@ const list = [
   {
     imgUrl:
       'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/photo_db/2020/06/18/202006181627374124/202006181627374124_1120_340.jpg?&rand=0827',
-    urlString: '2'
-  },
-  {
-    imgUrl:
-      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/photo_db/2020/06/18/202006181626316868/202006181626316868_1120_340.jpg?&rand=0827',
     urlString: '3'
   },
   {
     imgUrl:
-      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/photo_db/2020/06/18/202006181627596520/202006181627596520_1120_340.jpg?&rand=0827',
+      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/photo_db/2020/06/18/202006181626316868/202006181626316868_1120_340.jpg?&rand=0827',
     urlString: '4'
+  },
+  {
+    imgUrl:
+      'https://officialwebsitestorage.blob.core.chinacloudapi.cn/public/upload/photo_db/2020/06/18/202006181627596520/202006181627596520_1120_340.jpg?&rand=0827',
+    urlString: '2'
   }
 ]
 </script>
