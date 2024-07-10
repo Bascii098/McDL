@@ -105,7 +105,7 @@ const login = async () => {
     // 显示成功消息
     userStore.setToken(response.token)
     ElMessage.success(response.message)
-    router.push('/')
+    router.replace('/')
   } else {
     ElMessage.error(response.message)
   }

@@ -1,12 +1,23 @@
 <script setup>
-import { getcartAPI } from '@/apis/cart'
-import { onMounted, ref } from 'vue'
-
+import { getcartAPI, deletecartAPI, updatecartAPI } from '@/apis/cart'
+import { onMounted, ref, computed } from 'vue'
+import { debounce } from 'lodash'
 const cartList = ref([])
 const getcart = async () => {
   const res = await getcartAPI()
   cartList.value = res.data
 }
+const delCart = async (id) => {
+  const idx = cartList.value.findIndex((item) => id === item.id)
+  cartList.value.splice(idx, 1)
+  await deletecartAPI(id)
+}
+const handleChange = debounce(async (id, num) => {
+  await updatecartAPI({ id, num })
+}, 300)
+const allCount = computed(() => cartList.value.reduce((a, c) => a + c.num, 0))
+const allPrice = computed(() => cartList.value.reduce((a, c) => a + c.num * c.price, 0))
+
 onMounted(() => getcart())
 </script>
 
@@ -41,7 +52,7 @@ onMounted(() => getcart())
                 <p>&yen;{{ i.price }}</p>
               </td>
               <td class="tc">
-                <el-input-number v-model="i.num" />
+                <el-input-number :min="1" @change="handleChange(i.id, i.num)" v-model="i.num" />
               </td>
               <td class="tc">
                 <p class="f16 red">&yen;{{ (i.price * i.num).toFixed(2) }}</p>
@@ -52,7 +63,7 @@ onMounted(() => getcart())
                     title="确认删除吗?"
                     confirm-button-text="确认"
                     cancel-button-text="取消"
-                    @confirm="delCart(i)"
+                    @confirm="delCart(i.id)"
                   >
                     <template #reference>
                       <a href="javascript:;">删除</a>
@@ -76,8 +87,8 @@ onMounted(() => getcart())
       <!-- 操作栏 -->
       <div class="action">
         <div class="batch">
-          共 10 件商品,商品合计：
-          <span class="red">¥ 200.00 </span>
+          共 {{ allCount }}件商品,商品合计：
+          <span class="red">¥ {{ allPrice.toFixed(2) }}</span>
         </div>
         <div class="total">
           <el-button size="large" type="primary">下单结算</el-button>

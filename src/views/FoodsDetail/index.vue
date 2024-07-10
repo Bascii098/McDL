@@ -4,6 +4,7 @@ import { addcartAPI } from '@/apis/cart'
 import { onMounted, ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import { ElMessage } from 'element-plus'
 const userStore = useUserStore()
 const isLogin = computed(() => userStore.token)
 
@@ -17,13 +18,31 @@ const getDetail = async () => {
 const addcart = async () => {
   if (isLogin.value) {
     const res = await addcartAPI({
+      id: foodsDetailList.value.id,
       name: foodsDetailList.value.name,
       num: 1,
       price: foodsDetailList.value.price,
       imgurl: foodsDetailList.value.imgurl
     })
     console.log(res)
+    ElMessage({
+      type: 'success',
+      message: res?.message
+    })
+    if (res.status === 1) {
+      userStore.setToken(null)
+      ElMessage({
+        type: 'warning',
+        message: res?.message
+      })
+      router.push('/login')
+    }
   } else {
+    ElMessage({
+      type: 'warning',
+      message: '请先登录'
+    })
+    userStore.setToken(null)
     router.push('/login')
   }
 }
